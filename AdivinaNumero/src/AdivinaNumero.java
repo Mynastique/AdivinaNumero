@@ -8,33 +8,32 @@ public class AdivinaNumero {
         // Creación de la instancia random, donde el ordenador elige el número que adivinaremos
         Random r = new Random();
         // Generación del número aleatorio
-        int objetivo = r.nextInt(100);
+        int objetivo = r.nextInt(101);
         // Chuleta para pruebas, mantener comentado
-    // System.out.println(objetivo);
+        // System.out.println(objetivo);
         //Iniciación del Scanner para la lectura del teclado
         Scanner s = new Scanner(System.in);
         //Iniciación de variable booleana para adivinar
-        boolean adivinado = false;
         int contador = 0;
         // bucle para repetir hasta que se haya adivinado
-        while (!adivinado) {
+        while (true) {
             //incremento del contador de iteraciones (nº de veces que se llama a la variable)
             contador++;
             // petición de número al usuario como entero
             System.out.println("Dime un número del 1 al 100: ");
             int numero = s.nextInt();
-
             // Evaluación
-            if (numero == objetivo) { // acierto
-                adivinado = true;
+            if (numero < 1 || numero > 100) {
+                System.err.println("¡Solo números entre 1 e 100!");
+                continue;
+            }
+            if (numero == objetivo) {// numero acertado
                 System.out.println("¡Bien! Era " + numero);
-            } else { // Numero menor
-                if (numero < objetivo) {
-                    System.out.println("Mayor, mayor");
-                } else if (numero > objetivo) { //numero mayor
-                    System.out.println("Menor, menor");
-                } // esta llave cierra el if mayor/menor
-
+                break;
+            } else if (numero < objetivo) { // Numero menor
+                System.out.println("Mayor, mayor");
+            } else { //numero mayor
+                System.out.println("Menor, menor");
             } // esta cierra el if acierto/no acierto
         } // esta cierra el while
         // Al terminar se indica el número de intentos
